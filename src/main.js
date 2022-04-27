@@ -60,11 +60,6 @@ window.onbeforeunload = () => {
   localStorage.setItem("x", string); // 参数为key和value，key可以任意命名
 };
 
-const notButtons = $(document).not(document.getElementsByTagName("button"));
-const forms = $(document.getElementsByTagName("form"));
-console.log($(document).not(forms));
-console.log($("body"));
-
 $(document).on("keypress", (e) => {
   const { key } = e;
   if (!$(e.target).is("input")) {
