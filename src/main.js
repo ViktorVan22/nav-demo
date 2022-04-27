@@ -2,7 +2,7 @@ const $siteList = $(".siteList");
 const $lastLi = $siteList.find("li.last");
 const x = localStorage.getItem("x");
 const xObject = JSON.parse(x);
-console.log(xObject);
+// console.log(xObject);
 const hashMap = xObject || [
   { logo: "A", url: "https://www.acfun.cn" },
   { logo: "B", url: "https://www.bilibili.com" },
@@ -60,11 +60,18 @@ window.onbeforeunload = () => {
   localStorage.setItem("x", string); // 参数为key和value，key可以任意命名
 };
 
+const notButtons = $(document).not(document.getElementsByTagName("button"));
+const forms = $(document.getElementsByTagName("form"));
+console.log($(document).not(forms));
+console.log($("body"));
+
 $(document).on("keypress", (e) => {
   const { key } = e;
-  for (let i = 0; i < hashMap.length; i++) {
-    if (hashMap[i].logo.toLowerCase() === key) {
-      window.open(hashMap[i].url)
+  if (!$(e.target).is("input")) {
+    for (let i = 0; i < hashMap.length; i++) {
+      if (hashMap[i].logo.toLowerCase() === key) {
+        window.open(hashMap[i].url);
+      }
     }
   }
 });
