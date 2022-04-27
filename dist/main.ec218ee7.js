@@ -108,7 +108,7 @@ var $siteList = $(".siteList");
 var $lastLi = $siteList.find("li.last");
 var x = localStorage.getItem("x");
 var xObject = JSON.parse(x);
-console.log(xObject);
+// console.log(xObject);
 var hashMap = xObject || [{ logo: "A", url: "https://www.acfun.cn" }, { logo: "B", url: "https://www.bilibili.com" }];
 var simplifyUrl = function simplifyUrl(url) {
   return url.replace("https://", "").replace("http://", "").replace("www.", "").replace(/\/.*/, ""); // 删除 / 开头的内容
@@ -149,14 +149,21 @@ window.onbeforeunload = function () {
   localStorage.setItem("x", string); // 参数为key和value，key可以任意命名
 };
 
+var notButtons = $(document).not(document.getElementsByTagName("button"));
+var forms = $(document.getElementsByTagName("form"));
+console.log($(document).not(forms));
+console.log($("body"));
+
 $(document).on("keypress", function (e) {
   var key = e.key;
 
-  for (var i = 0; i < hashMap.length; i++) {
-    if (hashMap[i].logo.toLowerCase() === key) {
-      window.open(hashMap[i].url);
+  if (!$(e.target).is("input")) {
+    for (var i = 0; i < hashMap.length; i++) {
+      if (hashMap[i].logo.toLowerCase() === key) {
+        window.open(hashMap[i].url);
+      }
     }
   }
 });
 },{}]},{},["epB2"], null)
-//# sourceMappingURL=main.1e0a5f8d.map
+//# sourceMappingURL=main.ec218ee7.map
